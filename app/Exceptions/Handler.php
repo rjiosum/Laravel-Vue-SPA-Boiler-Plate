@@ -7,6 +7,10 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use ApiHandler;
+
+    private const NAMESPACE = 'App\\Exceptions\\Api\\';
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -42,14 +46,17 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  Throwable $exception
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function render($request, Throwable $exception)
     {
+        if($request->expectsJson()) {
+            return $this->resolve($request, $exception);
+        }
         return parent::render($request, $exception);
     }
 }
