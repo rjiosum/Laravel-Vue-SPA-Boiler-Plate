@@ -19,9 +19,24 @@ Route::group(['namespace' => 'Api\V1\Auth', 'prefix' => 'auth'], function () {
 
     });
 
-    Route::get('email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
-    Route::post('email/resend', 'VerificationController@resend')->name('verification.resend');
+    Route::middleware(['throttle:6,1'])->group(function () {
+        Route::middleware(['signed'])->group(function () {
+            Route::get('email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
+        });
+        Route::post('email/resend', 'VerificationController@resend')->name('verification.resend');
+    });
 
 });
 
+Route::group(['namespace' => 'Api\V1\User', 'prefix' => 'user'], function () {
 
+    Route::middleware(['throttle:60,1'])->group(function () {
+        Route::get('profile', 'ProfileController@index')->name('profile');
+    });
+
+    Route::middleware(['auth:api', 'throttle:5,1'])->group(function () {
+        Route::patch('profile/update', 'ProfileController@update')->name('profile.update');
+        Route::patch('password/update', 'PasswordController@update')->name('password.update');
+        Route::post('avatar/update', 'AvatarController@update')->name('avatar.update');
+    });
+});
