@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\Helper;
+use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -80,6 +81,7 @@ class User extends Authenticatable /*implements  MustVerifyEmail*/
     {
         return Storage::url('avatars/' . Helper::path($this->id) . $this->avatar);
     }
+
     /**
      * Accessor
      * @return string
@@ -87,6 +89,17 @@ class User extends Authenticatable /*implements  MustVerifyEmail*/
     public function getFullNameAttribute()
     {
         return ucwords($this->first_name . ' ' . $this->last_name);
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
     }
 
     /**

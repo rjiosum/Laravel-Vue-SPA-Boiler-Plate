@@ -9,6 +9,8 @@ Route::group(['namespace' => 'Api\V1\Auth', 'prefix' => 'auth'], function () {
         Route::middleware(['guest:api'])->group(function () {
             Route::post('register', 'RegisterController@register')->name('api.auth.register');
             Route::post('login', 'LoginController@login')->name('api.auth.login');
+            Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('api.auth.password.email');
+            Route::post('password/reset', 'ResetPasswordController@reset')->name('api.auth.password.reset');
         });
 
         Route::middleware(['auth:api'])->group(function () {
