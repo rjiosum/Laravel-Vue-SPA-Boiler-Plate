@@ -68,7 +68,7 @@ class LoginController extends Controller
         $cookie = Cookie::make($param['name'], $param['value'], $param['minutes'], $param['path'], $param['domain'],
             $param['secure'], $param['httponly'], $param['raw'], $param['samesite']);
 
-        return response()->json([
+        return response([
             'status' => true,
             'message' => trans('auth.login'),
             'user' => new UserPublicResource(Auth::user())
