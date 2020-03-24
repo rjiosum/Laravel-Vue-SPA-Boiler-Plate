@@ -23,7 +23,7 @@ class RegisterTest extends TestCase
             );
         }
 
-        $this->postJson(route('api.auth.register'), $data = $this->data())
+        $this->postJson(route('register'), $data = $this->data())
             ->assertJson([
                 "status" => true,
                 "user" => [
@@ -55,7 +55,7 @@ class RegisterTest extends TestCase
             );
         }
 
-        $this->postJson(route('api.auth.register'), $data = $this->data())
+        $this->postJson(route('register'), $data = $this->data())
             ->assertJson([
                 "status" => true,
                 "verify" => true,
@@ -75,7 +75,7 @@ class RegisterTest extends TestCase
     public function willThrowErrorsIfUserRegistersWithWrongInputData(): void
     {
         //first_name field is required
-        $this->postJson(route('api.auth.register'), $this->data(['first_name' => '']))
+        $this->postJson(route('register'), $this->data(['first_name' => '']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -87,7 +87,7 @@ class RegisterTest extends TestCase
             ]);
 
         //The first name may not be greater than 100 characters.
-        $this->postJson(route('api.auth.register'), $this->data(['first_name' => Str::random(300)]))
+        $this->postJson(route('register'), $this->data(['first_name' => Str::random(300)]))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -99,7 +99,7 @@ class RegisterTest extends TestCase
             ]);
 
         //last name field is required
-        $this->postJson(route('api.auth.register'), $this->data(['last_name' => '']))
+        $this->postJson(route('register'), $this->data(['last_name' => '']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -111,7 +111,7 @@ class RegisterTest extends TestCase
             ]);
 
         //The last name may not be greater than 100 characters.
-        $this->postJson(route('api.auth.register'), $this->data(['last_name' => Str::random(300)]))
+        $this->postJson(route('register'), $this->data(['last_name' => Str::random(300)]))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -123,7 +123,7 @@ class RegisterTest extends TestCase
             ]);
 
         //email field is required
-        $this->postJson(route('api.auth.register'), $this->data(['email' => '']))
+        $this->postJson(route('register'), $this->data(['email' => '']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -135,7 +135,7 @@ class RegisterTest extends TestCase
             ]);
 
         //email can have max 255 character
-        $this->postJson(route('api.auth.register'), $this->data(['email' => Str::random(260).'@yahoo.com']))
+        $this->postJson(route('register'), $this->data(['email' => Str::random(260).'@yahoo.com']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -146,7 +146,7 @@ class RegisterTest extends TestCase
                 ]
             ]);
         //email should be valid
-        $this->postJson(route('api.auth.register'), $this->data(['email' => '123fcd']))
+        $this->postJson(route('register'), $this->data(['email' => '123fcd']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -158,7 +158,7 @@ class RegisterTest extends TestCase
             ]);
 
         //password field is required
-        $this->postJson(route('api.auth.register'), $this->data(['password' => '']))
+        $this->postJson(route('register'), $this->data(['password' => '']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -170,7 +170,7 @@ class RegisterTest extends TestCase
             ]);
 
         //The password must be at least 8 characters.
-        $this->postJson(route('api.auth.register'), $this->data(['password' => '123', 'password_confirmation' => '123']))
+        $this->postJson(route('register'), $this->data(['password' => '123', 'password_confirmation' => '123']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -182,7 +182,7 @@ class RegisterTest extends TestCase
             ]);
 
         //The password confirmation does not match.
-        $this->postJson(route('api.auth.register'), $this->data(['password' => '123456789']))
+        $this->postJson(route('register'), $this->data(['password' => '123456789']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',

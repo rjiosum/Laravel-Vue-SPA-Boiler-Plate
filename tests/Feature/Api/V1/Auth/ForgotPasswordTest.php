@@ -21,7 +21,7 @@ class ForgotPasswordTest extends TestCase
 
         Notification::fake();
 
-        $this->postJson(route('api.auth.password.email'), ['email' => $user->email])
+        $this->postJson(route('password.email'), ['email' => $user->email])
             ->assertJson([
                 'status' => true,
                 'message' => trans('passwords.sent')
@@ -47,7 +47,7 @@ class ForgotPasswordTest extends TestCase
     public function cannotSendResetPasswordNotificationWithWrongInput(): void
     {
         //email field is required
-        $this->postJson(route('api.auth.password.email'), ['email' => ''])
+        $this->postJson(route('password.email'), ['email' => ''])
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -59,7 +59,7 @@ class ForgotPasswordTest extends TestCase
             ]);
 
         //email should be valid
-        $this->postJson(route('api.auth.password.email'), ['email' => '123fcd'])
+        $this->postJson(route('password.email'), ['email' => '123fcd'])
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -74,7 +74,7 @@ class ForgotPasswordTest extends TestCase
     /** @test */
     public function willThrowCannotFindUserIfEmailAddressIsInvalid(): void
     {
-        $this->postJson(route('api.auth.password.email'), ['email' => 'nouser@example.com'])
+        $this->postJson(route('password.email'), ['email' => 'nouser@example.com'])
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',

@@ -23,7 +23,7 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function canResetPassword(): void
     {
-        $this->postJson(route('api.auth.password.reset'), $this->data())
+        $this->postJson(route('password.reset'), $this->data())
             ->assertJson([
                 'status' => true,
                 'message' => trans('passwords.reset')
@@ -39,7 +39,7 @@ class ResetPasswordTest extends TestCase
     public function cannotResetPasswordWithWrongInput(): void
     {
         //token field is required
-        $this->postJson(route('api.auth.password.reset'), $this->data(['token' => '']))
+        $this->postJson(route('password.reset'), $this->data(['token' => '']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -51,7 +51,7 @@ class ResetPasswordTest extends TestCase
             ]);
 
         //Must be a valid token
-        $this->postJson(route('api.auth.password.reset'), $this->data(['token' => 'invalid']))
+        $this->postJson(route('password.reset'), $this->data(['token' => 'invalid']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -63,7 +63,7 @@ class ResetPasswordTest extends TestCase
             ]);
 
         //email field is required
-        $this->postJson(route('api.auth.password.reset'), $this->data(['email' => '']))
+        $this->postJson(route('password.reset'), $this->data(['email' => '']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -75,7 +75,7 @@ class ResetPasswordTest extends TestCase
             ]);
 
         //email should be valid
-        $this->postJson(route('api.auth.password.reset'), $this->data(['email' => '123fcd']))
+        $this->postJson(route('password.reset'), $this->data(['email' => '123fcd']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -87,7 +87,7 @@ class ResetPasswordTest extends TestCase
             ]);
 
         //password field is required
-        $this->postJson(route('api.auth.password.reset'), $this->data(['password' => '']))
+        $this->postJson(route('password.reset'), $this->data(['password' => '']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -99,7 +99,7 @@ class ResetPasswordTest extends TestCase
             ]);
 
         //The password must be at least 8 characters.
-        $this->postJson(route('api.auth.password.reset'), $this->data(['password' => '123', 'password_confirmation' => '123']))
+        $this->postJson(route('password.reset'), $this->data(['password' => '123', 'password_confirmation' => '123']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',
@@ -111,7 +111,7 @@ class ResetPasswordTest extends TestCase
             ]);
 
         //The password confirmation does not match.
-        $this->postJson(route('api.auth.password.reset'), $this->data(['password' => '123456789']))
+        $this->postJson(route('password.reset'), $this->data(['password' => '123456789']))
             ->assertStatus(422)
             ->assertExactJson([
                 'message' => 'The given data was invalid.',

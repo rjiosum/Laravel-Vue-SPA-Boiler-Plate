@@ -15,7 +15,7 @@ class LoginTest extends TestCase
     {
         $user = $this->create('User');
 
-        $this->postJson(route('api.auth.login'), [
+        $this->postJson(route('login'), [
             'email' => $user->email, 'password' => 'password'
         ])
             ->assertJson([
@@ -38,7 +38,7 @@ class LoginTest extends TestCase
     {
         $user = $this->create('User');
 
-        $this->postJson(route('api.auth.login'), [
+        $this->postJson(route('login'), [
             'email' => $user->email,
             'password' => 'wrong'
         ])

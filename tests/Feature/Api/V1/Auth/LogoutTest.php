@@ -17,7 +17,7 @@ class LogoutTest extends TestCase
 
         Passport::actingAs($user);
 
-        $this->postJson(route('api.auth.logout'))
+        $this->postJson(route('logout'))
             ->assertJson([
                 "status" => true,
                 'message' => trans('auth.logout')
