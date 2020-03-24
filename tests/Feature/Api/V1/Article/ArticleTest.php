@@ -56,7 +56,7 @@ class ArticleTest extends TestCase
     }
 
     /** @test */
-    public function will_throw_404_error_if_article_we_are_trying_to_fetch_does_not_exists(): void
+    public function willThrow404ErrorIfArticleWeAreTryingToFetchDoesNotExists(): void
     {
         $this->loggedInUser->getJson(route('article.show', -1))
             ->assertStatus(404);
