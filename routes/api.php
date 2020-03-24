@@ -17,4 +17,7 @@ Route::group(['namespace' => 'Api\V1\Auth', 'prefix' => 'auth'], function () {
 
     });
 
+    Route::get('email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
+    Route::post('email/resend', 'VerificationController@resend')->name('verification.resend');
+
 });

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\Helper;
+use App\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,7 @@ use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 
 
-class User extends Authenticatable
+class User extends Authenticatable /*implements  MustVerifyEmail*/
 {
     use HasApiTokens, Notifiable;
 
@@ -87,4 +88,15 @@ class User extends Authenticatable
     {
         return ucwords($this->first_name . ' ' . $this->last_name);
     }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
+
 }
