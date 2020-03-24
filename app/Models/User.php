@@ -112,4 +112,25 @@ class User extends Authenticatable /*implements  MustVerifyEmail*/
         $this->notify(new VerifyEmail);
     }
 
+    /**
+     * A user can have many Articles
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    /**
+     * User owns the article
+     *
+     * @param Article $article
+     * @return bool
+     */
+    public function ownsArticle(Article $article)
+    {
+        return $this->id == $article->user_id;
+    }
+
 }

@@ -40,3 +40,11 @@ Route::group(['namespace' => 'Api\V1\User', 'prefix' => 'user'], function () {
         Route::post('avatar/update', 'AvatarController@update')->name('avatar.update');
     });
 });
+
+Route::group(['namespace' => 'Api\V1\Article', 'prefix' => 'user', 'middleware' => ['auth:api', 'throttle:60,1']], function (){
+    Route::get('article', 'ArticleController@index')->name('article');
+    Route::post('article', 'ArticleController@store')->name('article.store');
+    Route::get('article/{article}', 'ArticleController@show')->name('article.show');
+    Route::delete('article/{article}', 'ArticleController@destroy')->name('article.destroy');
+    Route::patch('article/{article}', 'ArticleController@update')->name('article.update');
+});
