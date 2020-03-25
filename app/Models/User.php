@@ -79,7 +79,9 @@ class User extends Authenticatable /*implements  MustVerifyEmail*/
      */
     public function getAvatarUrlAttribute(): string
     {
-        return Storage::url('avatars/' . Helper::path($this->id) . $this->avatar);
+        return ($this->avatar === 'avatar.png')
+            ? Storage::url('avatars/' . $this->avatar)
+            : Storage::url('avatars/' . Helper::path($this->id) . $this->avatar);
     }
 
     /**
