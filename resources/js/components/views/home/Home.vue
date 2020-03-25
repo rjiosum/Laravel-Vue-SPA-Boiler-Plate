@@ -8,16 +8,33 @@
                 </v-col>
             </v-row>
         </v-parallax>
-
+        <v-container fluid grid-list-md>
+            <v-layout row wrap justify-center>
+                <v-flex xs12 sm12 md10 lg10 xl9>
+                    <AppArticles
+                            :methodName="methodName"
+                            :routeName="routeName"
+                    ></AppArticles>
+                </v-flex>
+            </v-layout>
+        </v-container>
     </div>
 </template>
 
 <script>
-
+    import AppArticles from '@/components/partials/articles/AppArticles';
 
     export default {
         name: "AppHome",
-
+        components: {
+            AppArticles
+        },
+        data() {
+            return {
+                methodName: 'HomeRepository.index',
+                routeName: 'home.article'
+            }
+        }
     }
 </script>
 

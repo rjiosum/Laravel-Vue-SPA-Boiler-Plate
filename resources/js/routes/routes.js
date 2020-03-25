@@ -9,7 +9,7 @@ function lazy (component) {
 
 const routes = [
     { path: '/', name: 'home', component: lazy('home/Home') },
-
+    { path: '/article/:id', name: 'home.article', component: lazy('home/Article')},
 
     { path: '/404', name: 'not.found', component: lazy('errors/NotFound') },
     { path: '*', component: lazy('errors/NotFound') }
