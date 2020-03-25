@@ -49,7 +49,7 @@ Route::group(['namespace' => 'Api\V1\Article', 'prefix' => 'user', 'middleware' 
     Route::patch('article/{article}', 'ArticleController@update')->name('article.update');
 });
 
-Route::group(['namespace' => 'Api\V1\Home', 'middleware' => ['guest:api', 'throttle:60,1']], function () {
+Route::group(['namespace' => 'Api\V1\Home', 'middleware' => ['throttle:60,1']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/{article}', 'HomeController@show')->name('home.show');
 });

@@ -7,7 +7,8 @@ export default [
         name: 'home',
         component: lazy('home/Home'),
         meta: {
-            middleware: [checkUser]
+            middleware: [checkUser],
+            title: 'Home Page'
         }
     },
     {

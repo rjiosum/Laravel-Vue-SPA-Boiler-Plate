@@ -9,7 +9,8 @@ export default [
         name: 'auth.register',
         component: lazy('auth/Register'),
         meta: {
-            middleware: [guest]
+            middleware: [guest],
+            title: 'Register'
         }
     },
     {
@@ -17,7 +18,8 @@ export default [
         name: 'auth.login',
         component: lazy('auth/Login'),
         meta: {
-            middleware: [guest]
+            middleware: [guest],
+            title: 'Login'
         }
     },
     {
@@ -33,7 +35,8 @@ export default [
         name: 'password.reset.email',
         component: lazy('auth/password/PasswordResetEmail'),
         meta: {
-            middleware: [checkUser, guest]
+            middleware: [checkUser, guest],
+            title: 'Forgot Password'
         }
     },
     {
@@ -41,7 +44,8 @@ export default [
         name: 'password.reset',
         component: lazy('auth/password/PasswordReset'),
         meta: {
-            middleware: [checkUser, guest]
+            middleware: [checkUser, guest],
+            title: 'Reset your password'
         }
     },
 
@@ -50,7 +54,8 @@ export default [
         name: 'verification.verify',
         component: lazy('auth/verification/VerifyEmail'),
         meta: {
-            middleware: [checkUser, guest]
+            middleware: [checkUser, guest],
+            title: 'Email Verification'
         }
     },
     {
@@ -58,9 +63,8 @@ export default [
         name: 'verification.resend',
         component: lazy('auth/verification/VerifyEmailResend'),
         meta: {
-            middleware: [checkUser, guest]
+            middleware: [checkUser, guest],
+            title: 'Resend email verification'
         }
     },
-
-
 ]

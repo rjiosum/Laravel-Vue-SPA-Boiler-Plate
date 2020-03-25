@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import store from '../store'
 import home from './home';
 import auth from "./auth";
+import user from "./user";
 import errors from "./errors";
 import {pipeline} from "./utility";
 
@@ -12,6 +13,7 @@ Vue.use(VueRouter);
 const routes = [
     ...home,
     ...auth,
+    ...user,
     ...errors
 ];
 
@@ -22,6 +24,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+    if(to.meta.title){
+        document.title = to.meta.title;
+    }
     if (!to.meta.middleware) {
         return next();
     }

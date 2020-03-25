@@ -7,14 +7,16 @@ export default [
         name: 'not.found',
         component: lazy('errors/NotFound'),
         meta: {
-            middleware: [checkUser]
+            middleware: [checkUser],
+            title: 'Error 404'
         }
     },
     {
         path: '*',
         component: lazy('errors/NotFound'),
         meta: {
-            middleware: [checkUser]
+            middleware: [checkUser],
+            title: 'Error 404'
         }
     }
 ]

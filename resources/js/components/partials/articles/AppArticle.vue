@@ -74,9 +74,10 @@
                     await fn(this.$route.params.id)
                         .then((response) => {
                             this.article = response.data;
+                            const title = document.querySelector('head title');
+                            title.textContent = response.data.title;
                         })
-                        .catch(error => {
-                        });
+                        .catch(error => {});
                 }
             },
             authorized(articleUserId) {
