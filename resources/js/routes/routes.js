@@ -1,18 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import home from './home';
+import auth from "./auth";
+import errors from "./errors";
+
 Vue.use(VueRouter);
 
-function lazy (component) {
-    return () => import(/* webpackChunkName: '' */ `@/components/views/${component}`).then(c => c.default || c)
-}
 
 const routes = [
-    { path: '/', name: 'home', component: lazy('home/Home') },
-    { path: '/article/:id', name: 'home.article', component: lazy('home/Article')},
-
-    { path: '/404', name: 'not.found', component: lazy('errors/NotFound') },
-    { path: '*', component: lazy('errors/NotFound') }
+    ...home,
+    ...auth,
+    ...errors
 ];
 
 const router = new VueRouter({
@@ -20,7 +19,6 @@ const router = new VueRouter({
     hashbang: false,
     mode: 'history'
 });
-
 
 
 export default router;

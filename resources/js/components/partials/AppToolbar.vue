@@ -16,7 +16,7 @@
                     <v-btn text color="grey" router :to="{ name: 'auth.login'}">Login
                         <v-icon right>mdi-lock-open</v-icon>
                     </v-btn>
-                    <v-btn text color="grey" router :to="{ name: 'auth.signup'}">SignUp
+                    <v-btn text color="grey" router :to="{ name: 'auth.register'}">SignUp
                         <v-icon right>mdi-account</v-icon>
                     </v-btn>
                 </template>
@@ -58,7 +58,7 @@
                         <img src="/images/male-user.png">
                     </v-list-item-avatar>
                     <v-list-item-content>
-                        <v-list-item-title>Boiler Plate</v-list-item-title>
+                        <v-list-item-title>BoilerPlate</v-list-item-title>
                         <v-list-item-subtitle>SPA</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
@@ -75,7 +75,7 @@
                         </v-list-item-content>
                     </v-list-item>
 
-                    <v-list-item router :to="{ name: 'auth.signup'}">
+                    <v-list-item router :to="{ name: 'auth.register'}">
                         <v-list-item-action>
                             <v-icon class="white--text">mdi-account</v-icon>
                         </v-list-item-action>
