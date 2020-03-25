@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Article;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ArticleSeeder extends Seeder
 {
