@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap');
+@import '~@mdi/font/css/materialdesignicons.css';
+@import "variables";
+@import '~vuetify/dist/vuetify.min.css';
+
+a{text-decoration: none;}
+html, body, .theme--light.v-application {background: #f3f5f9;}
+.v-application{
+    font-family: $font-family !important;
+    .display-4,
+    .display-3,
+    .display-2,
+    .display-1,
+    .headline,
+    .title,
+    .subtitle-1,
+    .subtitle-2,
+    .body-1,
+    .body-2,
+    .caption,
+    .overline {
+        font-family: $font-family !important;
+    }
+}
+.v-btn{text-transform: none;font-weight: 700;}
+
+.theme--light.v-card.v-card--outlined {border: thin solid rgba(0,0,0,.07);}
+
+.theme--light.v-card .v-card__subtitle, .theme--light.v-card>.v-card__text {color: rgba(0,0,0,1);}
+.v-label, .v-alert{font-size:.9rem}
+.v-input__icon .v-icon.v-icon{font-size: 1.1rem}
+.v-alert--dense .v-alert__wrapper .v-btn--fab.v-size--default{height:auto}
+.v-tab{text-transform: none}
+.ck-editor__editable { min-height:200px; max-height:400px; color: #000000;}
+
+.container.grid-list-md .layout .flex{position: relative;}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s ease;
+}
+.fade-enter, .fade-leave-active {
+    opacity: 0;
+}
+.child-view {
+    position: absolute;
+    transition: all .5s cubic-bezier(.55,0,.1,1);
+    width: 100%;
+}
+.slide-left-enter, .slide-right-leave-active {
+    opacity: 0;
+    -webkit-transform: translate(30px, 0);
+    transform: translate(30px, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+    opacity: 0;
+    -webkit-transform: translate(-30px, 0);
+    transform: translate(-30px, 0);
+}
