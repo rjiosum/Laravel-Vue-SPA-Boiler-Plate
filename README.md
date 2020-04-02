@@ -13,6 +13,20 @@ vuelidate 0.7.5, vuetify 2.2.18, vuex 3.1.3.
  Make sure you have npm installled.   
 ```
 
+### Features
+
+- Frontend built with [Vuetify](https://vuetifyjs.com/en/) UI framework.
+- Pages landing, login, register, forgot password. 
+- Email verification (To enable email verification verify that App\Models\User model implements the Illuminate\Contracts\Auth\MustVerifyEmail contract.) 
+- User dashboard, user update profile, user update password.
+- User update avatar using package [laravolt avatar](https://github.com/laravolt/avatar) and [intervention image](http://image.intervention.io/) 
+- User article CRUD with [CKEditor](https://ckeditor.com/ckeditor-5/) 
+- Client-side form validation with [vuelidate](https://github.com/vuelidate/vuelidate)
+- Laravel Passport Authentication.
+- PHPUnit test for all the features.
+- Laravel dusk test for frontend UI. 
+
+
 ### How to use
 - Download (as zip) and extract or git clone the project under your web server's root directory.
  
