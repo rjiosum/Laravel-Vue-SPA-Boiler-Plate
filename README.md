@@ -37,7 +37,7 @@ vuelidate 0.7.5, vuetify 2.2.18, vuex 3.1.3.
   ``` 
 
 - Run `php artisan db:seed`, this will create two users and few related articles for each user. 
-  You can use email: jhon@gmail.com, pwd: password to login and play with user section of the app.
+  You can use `email: jhon@gmail.com`, `pwd: password` to login and play with user section of the app.
   
 - To run the tests use `phpunit`:   
   ```bash
@@ -49,8 +49,10 @@ vuelidate 0.7.5, vuetify 2.2.18, vuex 3.1.3.
     $ php artisan dusk --testdox
     ```
 
- ### DEMO
+ ### DEMO 1
  ![Laravel Vue SPA boiler plate Demo](demo01.gif)
+ 
+ ### DEMO 2
  ![Laravel Vue SPA boiler plate Demo](demo02.gif)
 
 
