@@ -1,10 +1,11 @@
 # Laravel Vue SPA boiler plate
 
-Laravel Vue single page application boiler plate using laravel passport authentication.
+Laravel Vue single page application boiler plate using laravel passport authentication with passport cookies.
 
-Laravel 7.2.2, laravolt avatar 3.2, intervention image 2.5, laravel passport 8.4, vue 2.5.17, vue-router 3.1.6, 
+Laravel 7.2, laravolt avatar 3.2, intervention image 2.5, laravel passport 8.4, vue 2.5.17, vue-router 3.1.6, 
 vuelidate 0.7.5, vuetify 2.2.18, vuex 3.1.3.
   
+ 
 ### Prerequisites
 ```
  Make sure to use a version of php >= 7.3.9 (php -v).
@@ -22,8 +23,12 @@ vuelidate 0.7.5, vuetify 2.2.18, vuex 3.1.3.
   $ composer install
   ```
 
-- Update .env - set app url, database connection, mail connection and laravel passport details.
- 
+- Create two database one for app (e.g boilerplate) and one for app testing (e.g boilerplate_testing).
+
+- Create two file .env and .env.dusk.local using .env.example. Update both the files - set app url, database connection, mail connection and laravel passport details.
+
+- Update phpunit.xml file `<server name="DB_DATABASE" value="testDatabaseName (e.g boilerplate_testing)"/>` 
+
 - Run `php artisan storage:link` and `php artisan passport:install`.
    
 - Install front-end dependencies with `npm`:
@@ -38,6 +43,15 @@ vuelidate 0.7.5, vuetify 2.2.18, vuex 3.1.3.
   ```bash
   $ ./vendor/bin/phpunit --testdox tests
   ```
+
+- To run the ui tests use `dusk`:   
+    ```bash
+    $ php artisan dusk --testdox
+    ```
+
+ ### DEMO
+ ![Laravel Vue SPA boiler plate Demo](demo01.gif)
+ ![Laravel Vue SPA boiler plate Demo](demo02.gif)
 
 
 

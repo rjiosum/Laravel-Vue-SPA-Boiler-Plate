@@ -2,13 +2,13 @@
     <v-card flat outlined background="#ffffff" class="mb-10">
         <v-card-title class="mb-4">
             <v-layout row wrap>
-                <v-flex xs12 sm12 md10>
+                <v-flex xs12 sm12 md9>
                     <div>
                         <div class="headline article-title">{{article.title}}</div>
                         <span class="grey--text subtitle-2">Submitted {{article.created}}</span>
                     </div>
                 </v-flex>
-                <v-flex xs12 sm12 md2>
+                <v-flex xs12 sm12 md3>
                     <div class="text-md-right">
                         <template v-if="authorized(article.user.id)">
                             <v-tooltip top color="#000000">
