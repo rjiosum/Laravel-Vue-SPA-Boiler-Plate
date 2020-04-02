@@ -4,7 +4,7 @@
             <v-layout row wrap>
                 <v-flex xs12 sm12 md10>
                     <div>
-                        <div class="headline">{{article.title}}</div>
+                        <div class="headline article-title">{{article.title}}</div>
                         <span class="grey--text subtitle-2">Submitted {{article.created}}</span>
                     </div>
                 </v-flex>
@@ -13,8 +13,8 @@
                         <template v-if="authorized(article.user.id)">
                             <v-tooltip top color="#000000">
                                 <template v-slot:activator="{ on }">
-                                    <v-btn v-on="on" fab dark depressed small color="teal" route
-                                           :to="{name: 'user.view.article', params:{id: article.slug}}">
+                                    <v-btn v-on="on" fab dark depressed small
+                                           color="teal" route :to="{name: 'user.view.article', params:{id: article.slug}}">
                                         <v-icon dark>mdi-view-split-vertical</v-icon>
                                     </v-btn>
                                 </template>
@@ -23,8 +23,8 @@
 
                             <v-tooltip top color="#000000">
                                 <template v-slot:activator="{ on }">
-                                    <v-btn v-on="on" fab dark depressed small color="cyan" route
-                                           :to="{name: 'user.edit.article', params:{id: article.uuid}}">
+                                    <v-btn v-on="on" fab dark depressed small color="cyan"
+                                           route :to="{name: 'user.edit.article', params:{id: article.uuid}}">
                                         <v-icon dark>mdi-content-save-edit</v-icon>
                                     </v-btn>
                                 </template>
@@ -33,7 +33,7 @@
 
                             <v-tooltip top color="#000000">
                                 <template v-slot:activator="{ on }">
-                                    <v-btn v-on="on" fab dark depressed small color="red"
+                                    <v-btn :id="article.uuid" v-on="on" fab dark depressed small color="red"
                                            @click="deleteArticle(article.uuid)">
                                         <v-icon dark>mdi-delete</v-icon>
                                     </v-btn>

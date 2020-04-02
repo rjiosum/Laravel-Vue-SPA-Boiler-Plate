@@ -29,6 +29,7 @@
                                     label="Title"
                                     v-model.trim="form.title"
                                     type="text"
+                                    name="title"
                                     background-color="#f3f5f9"
                                     append-icon="mdi-alert-circle"
                                     :error-messages="titleErrors"
@@ -51,6 +52,8 @@
                                     v-model.trim="form.description"
                                     :config="editorConfig"
                                     @input="$v.form.description.$touch()"
+                                    tag-name="textarea"
+                                    name="description"
                             ></ckeditor>
 
                             <div v-if="!$v.form.description.required || errors.description" class="v-text-field__details mt-2">
@@ -61,7 +64,7 @@
                                 </div>
                             </div>
 
-                            <v-checkbox v-model="form.status" label="Is Active?"></v-checkbox>
+                            <v-checkbox :ripple="false" v-model="form.status" label="Is Active?" name="status"></v-checkbox>
 
                             <v-alert tile dismissible outlined border="left" v-model="submit.status" :type="submit.type">
                                 {{submit.message}}

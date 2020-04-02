@@ -30,6 +30,7 @@
                                         label="E-mail"
                                         v-model.trim="form.email"
                                         type="email"
+                                        name="email"
                                         background-color="#f3f5f9"
                                         append-icon="mdi-email-outline"
                                         :error-messages="emailErrors"
@@ -47,11 +48,7 @@
 
                     <v-list-item one-line class="text-center">
                         <v-list-item-content>
-                            <div>Remember it?
-                                <router-link :to="{ name: 'auth.login' }">
-                                    Sign in
-                                </router-link>
-                            </div>
+                            <div>Remember it? <router-link :to="{ name: 'auth.login' }">Sign in</router-link></div>
                         </v-list-item-content>
                     </v-list-item>
                 </template>

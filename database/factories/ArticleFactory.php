@@ -17,7 +17,7 @@ $factory->define(Article::class, function (Faker $faker) {
         'slug' => Str::slug($title),
         'description' => $faker->realText(1000),
         'status' => 1,
-        'created_at' => $created = $faker->dateTimeBetween('-2 years', '-2 months'),
-        'updated_at' => $faker->dateTimeBetween($created, strtotime('+2 days'))
+        'created_at' => $created = $faker->dateTimeBetween('-2 years', '-2 months', 'Europe/London'),
+        'updated_at' => $faker->dateTimeBetween($created, strtotime('+5 days'), 'Europe/London')
     ];
 });

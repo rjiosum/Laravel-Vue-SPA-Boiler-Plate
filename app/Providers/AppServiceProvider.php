@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if ($this->app->environment('local', 'testing')) {
+            $this->app->register(DuskServiceProvider::class);
+        }
     }
 
     /**
@@ -25,12 +27,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (config('app.debug')) {
+        /*if (config('app.debug')) {
             DB::listen(function ($query) {
                 Log::info(json_encode($query->sql));
                 Log::info(json_encode($query->bindings));
                 Log::info(json_encode($query->time));
             });
-        }
+        }*/
     }
 }

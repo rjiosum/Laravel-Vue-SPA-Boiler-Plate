@@ -10,7 +10,7 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
 
-            <v-toolbar-items>
+            <v-toolbar-items class="drop-down">
 
                 <template v-if="!authenticated">
                     <v-btn text color="grey" router :to="{ name: 'auth.login'}">Login
@@ -21,15 +21,15 @@
                     </v-btn>
                 </template>
                 <template v-else>
-                    <v-menu min-width="150" open-on-hover offset-y>
+                    <v-menu min-width="150" open-on-hover offset-y transition="slide-y-transition">
                         <template v-slot:activator="{ on }">
-                            <v-btn text color="grey" v-on="on">
+                            <v-btn text color="grey" v-on="on" id="dropdown-toggle">
                                 <span><v-avatar><img :src="user.avatar"></v-avatar> {{user.name}}</span>
                                 <v-icon right>mdi-chevron-down</v-icon>
                             </v-btn>
                         </template>
 
-                        <v-list>
+                        <v-list id="dropdown-menu-content">
                             <v-list-item route :to="{name: 'user.dashboard'}">
                                 <v-list-item-content>
                                     <v-list-item-title><v-icon left>mdi-home-city</v-icon>Dashboard</v-list-item-title>

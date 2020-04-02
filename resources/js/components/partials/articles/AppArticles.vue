@@ -29,16 +29,19 @@
             </v-card>
 
             <template v-if="articlesCount > 0">
-                <AppArticlesInner
-                        v-for="(article) in articles"
-                        :key="article.uuid"
-                        :article="article"
-                        :routeName="routeName"
-                        @deleteArticle="deleteArticle"
-                ></AppArticlesInner>
+                <div class="article-lists">
+                    <AppArticlesInner
+                            v-for="(article) in articles"
+                            :key="article.uuid"
+                            :article="article"
+                            :routeName="routeName"
+                            @deleteArticle="deleteArticle"
+                    ></AppArticlesInner>
+                </div>
             </template>
 
-            <div v-cloak v-if="articlesCount === 0" class="display-1 font-weight-bold text-center">No articles found!!</div>
+            <div v-cloak v-if="articlesCount === 0" class="display-1 font-weight-bold text-center">No articles found!!
+            </div>
 
             <v-card flat outlined class="mt-10" v-if="articlesCount > 0">
                 <v-card-text>
@@ -103,7 +106,8 @@
                             this.pagination.total = response.data.meta.last_page;
                             this.articlesCount = response.data.meta.total;
                         })
-                        .catch(error => {});
+                        .catch(error => {
+                        });
                 }
             },
             next() {
@@ -122,7 +126,8 @@
                                 });
                                 this.fetch();
                             })
-                            .catch(error => {});
+                            .catch(error => {
+                            });
                     }
                 })
             }

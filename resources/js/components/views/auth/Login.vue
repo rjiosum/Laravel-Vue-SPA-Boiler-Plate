@@ -20,6 +20,7 @@
                                     label="E-mail"
                                     v-model.trim="form.email"
                                     type="email"
+                                    name="email"
                                     background-color="#f3f5f9"
                                     append-icon="mdi-email-outline"
                                     :error-messages="emailErrors"
@@ -31,6 +32,7 @@
                                     label="Password"
                                     v-model.trim="form.password"
                                     type="password"
+                                    name="password"
                                     background-color="#f3f5f9"
                                     append-icon="mdi-lock-open"
                                     :error-messages="passwordErrors"
@@ -111,7 +113,7 @@
                             this.submitted = false;
                         } else {
                             this.$store.dispatch('notify/setNotice', {
-                                msg: "You are successfully logged in!!",
+                                msg: "Successfully logged in.",
                                 color: "success",
                                 icon: "mdi-check-bold"
                             });

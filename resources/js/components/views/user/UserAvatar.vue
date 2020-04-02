@@ -34,6 +34,7 @@
                                 background-color="#f3f5f9"
                                 accept="image/*"
                                 v-model="avatar"
+                                name="avatar"
                                 :error-messages="avatarErrors"
                                 @input="$v.avatar.$touch()"
                                 @blur="$v.avatar.$touch()"

@@ -3,64 +3,63 @@
         <v-layout row wrap justify-center>
             <v-flex xs12 sm12 md5 lg5 xl4>
 
-                    <v-list-item one-line class="mt-10 text-center">
-                        <v-list-item-content>
-                            <v-list-item-title class="font-weight-bold headline">Reset your password.</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
+                <v-list-item one-line class="mt-10 text-center">
+                    <v-list-item-content>
+                        <v-list-item-title class="font-weight-bold headline">Reset your password.</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
 
-                    <v-card flat>
-                        <v-card-text>
-                            <v-form @submit.prevent="reset">
-                                <v-text-field
-                                        filled
-                                        label="E-mail"
-                                        v-model.trim="form.email"
-                                        type="email"
-                                        background-color="#f3f5f9"
-                                        append-icon="mdi-email-outline"
-                                        :error-messages="emailErrors"
-                                        @input="$v.form.email.$touch()"
-                                        @blur="$v.form.email.$touch()"
-                                ></v-text-field>
-                                <v-text-field
-                                        filled
-                                        label="Password"
-                                        v-model.trim="form.password"
-                                        type="password"
-                                        background-color="#f3f5f9"
-                                        append-icon="mdi-lock-open"
-                                        :error-messages="passwordErrors"
-                                        @input="$v.form.password.$touch()"
-                                        @blur="$v.form.password.$touch()"
-                                ></v-text-field>
-                                <v-text-field
-                                        filled
-                                        label="Confirm Password"
-                                        v-model.trim="form.password_confirmation"
-                                        type="password"
-                                        background-color="#f3f5f9"
-                                        append-icon="mdi-lock-open"
-                                        :error-messages="confirmPasswordErrors"
-                                        @input="$v.form.password_confirmation.$touch()"
-                                        @blur="$v.form.password_confirmation.$touch()"
-                                ></v-text-field>
+                <v-card flat>
+                    <v-card-text>
+                        <v-form @submit.prevent="reset">
+                            <v-text-field
+                                    filled
+                                    label="E-mail"
+                                    v-model.trim="form.email"
+                                    type="email"
+                                    name="email"
+                                    background-color="#f3f5f9"
+                                    append-icon="mdi-email-outline"
+                                    :error-messages="emailErrors"
+                                    @input="$v.form.email.$touch()"
+                                    @blur="$v.form.email.$touch()"
+                            ></v-text-field>
+                            <v-text-field
+                                    filled
+                                    label="Password"
+                                    v-model.trim="form.password"
+                                    type="password"
+                                    name="password"
+                                    background-color="#f3f5f9"
+                                    append-icon="mdi-lock-open"
+                                    :error-messages="passwordErrors"
+                                    @input="$v.form.password.$touch()"
+                                    @blur="$v.form.password.$touch()"
+                            ></v-text-field>
+                            <v-text-field
+                                    filled
+                                    label="Confirm Password"
+                                    v-model.trim="form.password_confirmation"
+                                    type="password"
+                                    name="password_confirmation"
+                                    background-color="#f3f5f9"
+                                    append-icon="mdi-lock-open"
+                                    :error-messages="confirmPasswordErrors"
+                                    @input="$v.form.password_confirmation.$touch()"
+                                    @blur="$v.form.password_confirmation.$touch()"
+                            ></v-text-field>
 
-                                <v-alert
-                                        v-model="alert"
-                                        border="left"
-                                        type="success"
-                                        dismissible
-                                >
-                                    {{message}}
-                                </v-alert>
+                            <v-alert v-model="alert" border="left" type="success" dismissible>
+                                {{message}}
+                            </v-alert>
 
-                                <v-btn depressed tile class="blue white--text" type="submit"
-                                       :loading="submitted"
-                                       :disabled="submitted">Reset</v-btn>
-                            </v-form>
-                        </v-card-text>
-                    </v-card>
+                            <v-btn depressed tile class="blue white--text" type="submit"
+                                   :loading="submitted"
+                                   :disabled="submitted">Reset
+                            </v-btn>
+                        </v-form>
+                    </v-card-text>
+                </v-card>
             </v-flex>
         </v-layout>
     </v-container>
@@ -81,7 +80,7 @@
             form: {
                 email: {required, email},
                 password: {required, minLength: minLength(6)},
-                password_confirmation: { required, sameAsPassword: sameAs('password') }
+                password_confirmation: {required, sameAsPassword: sameAs('password')}
             }
         },
         data() {
@@ -97,12 +96,12 @@
                 message: null
             }
         },
-        created () {
+        created() {
             this.form.email = this.$route.query.email;
             this.form.token = this.$route.params.token;
         },
         methods: {
-            async reset () {
+            async reset() {
                 this.$v.$touch();
                 if (this.$v.$invalid) {
                     return;

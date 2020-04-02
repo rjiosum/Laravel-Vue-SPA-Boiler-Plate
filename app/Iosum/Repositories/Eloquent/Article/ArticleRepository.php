@@ -48,9 +48,9 @@ class ArticleRepository implements ArticleRepositoryInterface
     public function getArticles()
     {
         if (is_null($this->user)) {
-            return $this->article->latest()->paginate(15);
+            return $this->article->orderByDesc('id')->paginate(15);
         }
-        return $this->user->articles()->latest()->paginate(15);
+        return $this->user->articles()->orderByDesc('id')->paginate(15);
     }
 
     /**

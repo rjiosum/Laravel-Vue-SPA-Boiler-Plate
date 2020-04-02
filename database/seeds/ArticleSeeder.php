@@ -13,7 +13,17 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        factory(Article::class, 500)->create()->each(function ($article) {
+        factory(Article::class, 100)->create()->each(function ($article) {
+            $article->slug = Str::slug($article->id . '-' . $article->title);
+            return $article->save();
+        });
+
+        factory(Article::class)->create([
+            'user_id' => 1,
+            'title' => 'A bird in hand is worth two in the bush.',
+            'created_at' => now(),
+            'updated_at' => now()
+        ])->each(function ($article) {
             $article->slug = Str::slug($article->id . '-' . $article->title);
             return $article->save();
         });
